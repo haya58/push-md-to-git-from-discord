@@ -1,0 +1,32 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: genmd-from-discord-bot
+  namespace: genmd-from-discord-bot
+  labels:
+    app: genmd-from-discord-bot
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: genmd-from-discord-bot
+  template:
+    metadata:
+      labels:
+        app: genmd-from-discord-bot
+    spec:
+      containers:
+        - name: bot
+          image: genmd-from-discord-bot:latest
+          envFrom:
+            - configMapRef:
+                name: genmd-from-discord-bot
+            - secretRef:
+                name: genmd-from-discord-bot
+          volumeMounts:
+            - name: data
+              mountPath: /data
+      volumes:
+        - name: data
+          persistentVolumeClaim:
+            claimName: genmd-from-discord-bot

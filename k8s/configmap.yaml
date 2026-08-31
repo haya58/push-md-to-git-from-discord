@@ -1,0 +1,11 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: genmd-from-discord-bot
+  namespace: genmd-from-discord-bot
+data:
+  GITHUB_BASE_BRANCH: "main"
+  SITE_BASE_URL: "https://example.com"
+  POSTS_DIRECTORY: "site/content/posts"
+  DATABASE_PATH: "/data/bot.sqlite"
+  TIMEZONE: "Asia/Tokyo"
